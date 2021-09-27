@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using API.Data;
 
 namespace API
 {
@@ -26,7 +28,19 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configurar a politica de CORS para requisiçoes de qualquer origem
+            services.AddCors(
+                options =>
+                {
+                    options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin());
+                }
+            );
 
+            //Configurar todas as injeções de dependência da sua aplicação
+            services.AddDbContext<DataContext>
+            (
+                options => options.UseInMemoryDatabase("database")
+            );
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -43,6 +57,8 @@ namespace API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 

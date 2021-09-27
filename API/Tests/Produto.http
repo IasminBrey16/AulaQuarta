@@ -1,0 +1,32 @@
+###Cadastrar produto
+
+POST https://localhost:5001/api/produto/create
+content-Type: application/json
+
+{
+    "Nome" : "Bolacha",
+    "Preco" : 3.5
+}
+
+### Listar produtos
+
+GET https://localhost:5001/api/produto/list
+
+### Buscar o produto pelo id
+
+GET https://localhost:5001/api/produto/getbyid/1
+
+### Deletar o produto pelo id
+
+DELETE https://localhost:5001/api/produto/delete/1
+
+### Alterar o produto inteiro
+
+PUT https://localhost:5001/api/produto/update
+Content-Type: application/json
+
+{
+    "Id" : 1,
+    "Nome" : "Bolacha",
+    "Preco" : 3.5
+}
