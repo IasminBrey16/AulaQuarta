@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using API.Data;
 
 namespace API
 {
@@ -28,11 +28,15 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Configurar a politica de CORS para requisiçoes de qualquer origem
+
+            //Configurar a política de CORS para requisições de qualquer origem
             services.AddCors(
                 options =>
                 {
-                    options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin());
+                    options.AddPolicy("CorsPolicy", builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
                 }
             );
 
@@ -41,6 +45,7 @@ namespace API
             (
                 options => options.UseInMemoryDatabase("database")
             );
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

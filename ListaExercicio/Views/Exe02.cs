@@ -9,9 +9,9 @@ namespace ListaExercicio.Views
             const double VALOR_DOLAR_ATUAL = 5.17;
             double real, dolar;
             Console.WriteLine("Digite o valor em R$:");
-            real = Convert.ToInt32(Console.ReadLine());
+            real = Convert.ToDouble(Console.ReadLine());
             dolar = real / VALOR_DOLAR_ATUAL;
-            Console.WriteLine($"Dolar: {dolar.ToString("F2")}");
+            Console.WriteLine($"Dolar: { dolar.ToString("F2") }");
         }
     }
 }

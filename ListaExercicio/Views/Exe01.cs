@@ -12,7 +12,7 @@ namespace ListaExercicio.Views
             Console.WriteLine("Digite a altura:");
             altura = Convert.ToInt32(Console.ReadLine());
             area = largura * altura;
-            Console.WriteLine($"Área: {area}");
+            Console.WriteLine($"Área: { area }");
         }
     }
 }

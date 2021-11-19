@@ -11,15 +11,15 @@ namespace ListaExercicio.Views
             Random random = new Random();
             int[] numeros = new int[TAMANHO_VETOR];
 
+            //Populando o vetor com números aleatórios
             for (int i = 0; i < TAMANHO_VETOR; i++)
             {
                 numeros[i] = random.Next(VALOR_MAXIMO);
             }
-
             //Imprimir vetor não ordenado
             foreach (int numero in numeros)
             {
-                Console.Write($"{numero} ");
+                Console.Write($"{ numero } ");
             }
             Console.WriteLine("\n\n");
 
@@ -31,7 +31,7 @@ namespace ListaExercicio.Views
             do
             {
                 troca = false;
-                for (int i = 0; i <  TAMANHO_VETOR - 1; i++)
+                for (int i = 0; i < TAMANHO_VETOR - 1; i++)
                 {
                     if (numeros[i] > numeros[i + 1])
                     {
@@ -42,11 +42,11 @@ namespace ListaExercicio.Views
                     }
                 }
             } while (troca);
-            
+
             //Imprimir vetor ordenado
             foreach (int numero in numeros)
             {
-                Console.Write($"{numero} ");
+                Console.Write($"{ numero } ");
             }
         }
     }
